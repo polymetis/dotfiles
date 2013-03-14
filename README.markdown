@@ -1,4 +1,4 @@
-# holman does dotfiles
+# Polymetis does dotfiles
 
 ## dotfiles
 
@@ -79,9 +79,10 @@ and I'd love to get it fixed for you!
 
 ## thanks
 
-I forked [Ryan Bates](http://github.com/ryanb)' excellent
-[dotfiles](http://github.com/ryanb/dotfiles) for a couple years before the
-weight of my changes and tweaks inspired me to finally roll my own. But Ryan's
-dotfiles were an easy way to get into bash customization, and then to jump ship
-to zsh a bit later. A decent amount of the code in these dotfiles stem or are
-inspired from Ryan's original project.
+This project began as a fork of (and is heavily inspired by)
+[holman's dotfiles](http://github.com/holman/dotfiles), and much of it's
+ease is due to him. 
+
+I am also playing around and in the .dotfile network, as always and as more commits roll in I will credit all those that helped me here. 
+
+Thanks guys :D
