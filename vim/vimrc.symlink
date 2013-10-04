@@ -38,6 +38,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'tpope/vim-commentary'
 Bundle 'godlygeek/tabular'
 Bundle 'epmatsw/ag.vim'
+Bundle 'ervandew/supertab'
 
 " Syntax
 " ------
