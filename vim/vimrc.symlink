@@ -144,5 +144,5 @@ set statusline+=%=                             " Set right-side status info afte
 set statusline+=%l/%L:%v                       " Set line number / total lines : column
 set statusline+=\                              " Set ending space
 
-colorscheme railscasts
+colorscheme solarized
 set background=dark
