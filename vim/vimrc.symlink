@@ -1,0 +1,148 @@
+" Vim
+" ===
+
+" Source ~/.vimrc.before if it exists
+if filereadable(expand('~/.vimrc.before'))
+  source ~/.virmrc.before
+endif
+
+set nocompatible            " I am living in the future after all
+filetype off                " required!
+
+"Vundle
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+" Git Related
+" -----------
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'airblade/vim-gitgutter'
+
+" Languages
+" ---------
+
+Bundle 'rodjek/vim-puppet'
+
+Bundle 'elixir-lang/vim-elixir'
+Bundle 'jimenezrick/vimerl'
+Bundle 'gh:vim-ruby/vim-ruby'
+
+Bundle 'tpope/vim-liquid'
+Bundle 'tpope/vim-markdown'
+Bundle 'nelstrom/vim-markdown-folding'
+Bundle 'kchmck/vim-coffee-script'
+Bundle 'pangloss/vim-javascript' 
+
+Bundle 'tpope/vim-commentary'
+Bundle 'godlygeek/tabular'
+Bundle 'epmatsw/ag.vim'
+
+" Syntax
+" ------
+
+ syntax on
+ syntax enable
+ set t_Co=256
+
+" General Config
+" --------------
+
+let mapleader='\'
+set encoding=utf-8             
+set number                       " Line numbers
+set backspace=indent,eol,start   " Allow backspace in insert mode
+set history=1000                 " Stores command line history
+set showcmd                      " Show incomplete commands down the bottom
+set showmode                     " Show current mode down down the bottom
+set gcr=a:blinkon0               " Disables cursor blink
+set autoread                     " Reload files changed outside vim
+set laststatus=w                 " Always show status line
+set clipboard=unnamed            " Connects to the System Clipboard
+set hidden                       " Buffers in Background
+set splitright                   " Opens Vertical split right of the current window
+set splitbelow                   " Opens Horizontal split right of the current window
+
+" Mouse
+" -----
+
+set ttyfast                      " Send more characters for redraws
+set mouse=a                      " Enable mouse use in all modes
+set ttymouse=xterm2              " Sets this to type of terminal
+
+" Search Settings
+" ---------------
+
+set incsearch                    " Find the next match as we type
+set hlsearch                     " Highlights search by default
+
+" Turn Off Swap Files
+" -------------------
+
+set noswapfile
+set nobackup
+set nowritebackup
+set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
+" Persistent Undo
+" ---------------
+
+set undodir=~/.vim/undodir
+set undofile
+set undolevels = 1000            " number of changes that can be undone
+set undoreload = 10000           " number lines to save for undo on a buffer reload
+
+" Indentation and Display
+" ----------------------- 
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
+filetype plugin on 
+filetype indent on
+
+set list listchars=tab:\ \ ,trail:· " Interpunct for trailing whitespace
+set nowrap
+set linebreak
+
+" Folds
+" -----
+
+set foldmethod=indent               " Fold based on indent
+set foldnestmax=3                   " Deepest fold is 3 levels
+set nofoldenable                    " Don't fold by default
+
+" Completion
+" ----------
+
+set wildmode=longest,liset,full
+set wildmenu
+set wildignore=*.o,*.obj,*~
+set wildignore+=*vim/backups*
+
+" Scrolling
+" ---------
+
+set scrolloff=10
+set sidescrolloff=15
+set sidescroll=1
+
+" Status Line
+" -----------
+
+set statusline=                                " Override default
+set statusline+=%{fugitive#statusline()[4:-2]} " Show fugitive git info
+set statusline+=\ %f\ %m\ %r                   " filename/path
+set statusline+=%=                             " Set right-side status info after this line
+set statusline+=%l/%L:%v                       " Set line number / total lines : column
+set statusline+=\                              " Set ending space
+
+colorscheme herokudoc
+set background=dark
