@@ -2,9 +2,9 @@
 " ===
 
 " Source ~/.vimrc.before if it exists
-if filereadable(expand('~/.vimrc.before'))
-  source ~/.virmrc.before
-endif
+"if filereadable(expand('~/.vimrc.before'))
+"  source ~/.virmrc.before
+"endif
 
 set nocompatible            " I am living in the future after all
 filetype off                " required!
@@ -58,7 +58,7 @@ set showcmd                      " Show incomplete commands down the bottom
 set showmode                     " Show current mode down down the bottom
 set gcr=a:blinkon0               " Disables cursor blink
 set autoread                     " Reload files changed outside vim
-set laststatus=w                 " Always show status line
+set laststatus=2                 " Always show status line
 set clipboard=unnamed            " Connects to the System Clipboard
 set hidden                       " Buffers in Background
 set splitright                   " Opens Vertical split right of the current window
@@ -91,8 +91,8 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 set undodir=~/.vim/undodir
 set undofile
-set undolevels = 1000            " number of changes that can be undone
-set undoreload = 10000           " number lines to save for undo on a buffer reload
+set undolevels=1000            " number of changes that can be undone
+set undoreload=10000           " number lines to save for undo on a buffer reload
 
 " Indentation and Display
 " ----------------------- 
@@ -122,7 +122,7 @@ set nofoldenable                    " Don't fold by default
 " Completion
 " ----------
 
-set wildmode=longest,liset,full
+set wildmode=longest,list,full
 set wildmenu
 set wildignore=*.o,*.obj,*~
 set wildignore+=*vim/backups*
@@ -144,5 +144,5 @@ set statusline+=%=                             " Set right-side status info afte
 set statusline+=%l/%L:%v                       " Set line number / total lines : column
 set statusline+=\                              " Set ending space
 
-colorscheme herokudoc
+colorscheme railscasts
 set background=dark
