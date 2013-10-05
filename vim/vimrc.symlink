@@ -33,13 +33,14 @@ Bundle 'tpope/vim-liquid'
 Bundle 'tpope/vim-markdown'
 Bundle 'nelstrom/vim-markdown-folding'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'pangloss/vim-javascript' 
+Bundle 'pangloss/vim-javascript'
 
 Bundle 'tpope/vim-commentary'
 Bundle 'godlygeek/tabular'
 Bundle 'epmatsw/ag.vim'
 Bundle 'ervandew/supertab'
-Bundle 'blind/vimairline'
+Bundle 'bling/vim-airline'
+
 
 " Syntax
 " ------
@@ -52,7 +53,7 @@ Bundle 'blind/vimairline'
 " --------------
 
 let mapleader='\'
-set encoding=utf-8             
+set encoding=utf-8
 set number                       " Line numbers
 set backspace=indent,eol,start   " Allow backspace in insert mode
 set history=1000                 " Stores command line history
@@ -138,6 +139,8 @@ set sidescroll=1
 
 " Status Line
 " -----------
+
+let g:airline_powerline_fonts = 1
 
 set statusline=                                " Override default
 set statusline+=%{fugitive#statusline()[4:-2]} " Show fugitive git info
