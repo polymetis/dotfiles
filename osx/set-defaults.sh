@@ -54,9 +54,6 @@ defaults write com.apple.dock dashboard-in-overlay -bool true
 # Disable Dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
 
-# Disable press-and-hold for keys in favor of key repeat.
-defaults write -g ApplePressAndHoldEnabled -bool false
-
 # Use AirDrop over every interface. srsly this should be a default.
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
 
