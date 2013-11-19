@@ -28,8 +28,8 @@ systemsetup -setrestartfreeze on
 # Check for software updates daily, not just once per week
 defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
 
-# Save screenshots to the Pictures
-defaults write com.apple.screencapture location -string "$HOME/Pictures/screenshots"
+# Save screenshots to the Dropbox
+defaults write com.apple.screencapture location -string "$HOME/Dropbox/Screenshots"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
