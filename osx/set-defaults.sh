@@ -10,7 +10,7 @@
 # Menu bar: disable transparency
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
-# Set highlight color to purple
+# Set highlight color to green
 defaults write NSGlobalDomain AppleHighlightColor -string '0.796875 0.60546875 0.8671875'
 
 # Expand print panel by default
