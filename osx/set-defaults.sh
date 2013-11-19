@@ -11,7 +11,7 @@
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
 
 # Set highlight color to green
-defaults write NSGlobalDomain AppleHighlightColor -string '0.796875 0.60546875 0.8671875'
+defaults write NSGlobalDomain AppleHighlightColor -string '0.764700 0.976500 0.568600'
 
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
