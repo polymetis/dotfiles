@@ -113,6 +113,9 @@ set list listchars=tab:\ \ ,trail:· " Interpunct for trailing whitespace
 set nowrap
 set linebreak
 
+
+command! -nargs=* Wrap set wrap linebreak nolist
+
 " Folds
 " -----
 
