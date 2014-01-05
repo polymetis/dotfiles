@@ -12,21 +12,10 @@
 
 set -e
 
-starting_directory="$(pwd)"
 directory="$1"
 shift
 files=$@
 
 mkdir "$directory"
 cp $files "$directory"
-
-#confirm that files have been copied
-cd "$directory"
-copied_files="$(ls -x)"
-#Fixes space problem will fix later
-copied_files="$(echo $copied_files | sed 's/\ \ /\ /g')"
-
-if [ "$files" == "$copied_files" ]; then
-  cd "$starting_directory"
-  mv $files "$HOME/.Trash/"
-fi
+mv $files "$HOME/.Trash/"
