@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Move to new directory
+#
+# $1 - The new directory
+# $2 - The the files
+#
+# Examples
+#
+#   mvm Elixir_Sips/Chapter_9 009*
+#
+
+folder="$1"
+shift
+files=$@
+
+mkdir "$folder"
+mv $files "$folder"
