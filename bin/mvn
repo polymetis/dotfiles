@@ -3,7 +3,7 @@
 # Move to new directory
 #
 # $1 - The new directory
-# $2 - The the files
+# $2 - The files
 #
 # Examples
 #
