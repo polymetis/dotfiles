@@ -10,9 +10,23 @@
 #   mvm Elixir_Sips/Chapter_9 009*
 #
 
-folder="$1"
+set -e
+
+starting_directory="$(pwd)"
+directory="$1"
 shift
 files=$@
 
-mkdir "$folder"
-mv $files "$folder"
+mkdir "$directory"
+cp $files "$directory"
+
+#confirm that files have been copied
+cd "$directory"
+copied_files="$(ls -x)"
+#Fixes space problem with fix later
+copied_files="$(echo $copied_files | sed 's/\ \ /\ /g')"
+
+if [ "$files" == "$copied_files" ]; then
+  cd "$starting_directory"
+  mv $files "$HOME/.Trash/"
+fi
