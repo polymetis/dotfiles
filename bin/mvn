@@ -23,7 +23,7 @@ cp $files "$directory"
 #confirm that files have been copied
 cd "$directory"
 copied_files="$(ls -x)"
-#Fixes space problem with fix later
+#Fixes space problem will fix later
 copied_files="$(echo $copied_files | sed 's/\ \ /\ /g')"
 
 if [ "$files" == "$copied_files" ]; then
