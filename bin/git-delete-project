@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+echo "This will delete an entire project with submodules through the GitHub api"
+echo "It will leave your local copy"
+
+if [ -z "$user" ]; then
+  echo "Enter User Name:"
+  read user
+  export user="$user"
+fi
+
+if [ -z "$pass" ]; then
+  echo "Enter Password"
+  read -s pass
+  export pass="$pass"
+fi
+
+origin_owner_repo_parse() {
+  originurl="$(git config remote.origin.url)"
+  #Safety catch for an owner you need to be safe
+  not_my_repo="$(git config --global safety.catch)"
+  owner="$(echo "$originurl" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/\/[^\/]*$//')"
+  repo="$(echo "$originurl" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/'$owner'\///g' | sed 's/.git//g')"
+  if [ "$owner" == "$not_my_repo" ]; then
+    echo "stop that"
+    exit 1
+  fi
+}
+
+delete_repo() {
+  curl -s -u "$user:$pass" -X DELETE https://api.github.com/repos/$owner/$repo
+}
+
+origin_owner_repo_parse
+
+if [ -e .gitmodules ]; then
+   awk '/path =/ { print $3 }' .gitmodules |  xargs -P4 -imetrasub  bash -c "cd metrasub && git delete-repo"
+fi
+
+delete_repo
