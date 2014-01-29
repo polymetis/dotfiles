@@ -33,7 +33,7 @@ delete_repo() {
 origin_owner_repo_parse
 
 if [ -e .gitmodules ]; then
-   awk '/path =/ { print $3 }' .gitmodules |  xargs -P4 -imetrasub  bash -c "cd metrasub && git delete-repo"
+   awk '/path =/ { print $3 }' .gitmodules |  xargs -P4 -I subsitution  bash -c "cd subsitution && git delete-repo"
 fi
 
 delete_repo
