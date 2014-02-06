@@ -2,8 +2,7 @@
 if [ -z "$WARNING" ]; then
   echo "This will delete the entire project on GitHub"
   echo "but leave a local copy"
-  else
-    export WARNING="Yee Have Been Warned"
+  export WARNING="Yee Have Been Warned"
 fi
 if [ -z "$user" ]; then
   echo "Enter User Name:"
