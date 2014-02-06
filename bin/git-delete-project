@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-echo "This will delete an entire project with submodules through the GitHub api"
-echo "It will leave your local copy"
-
+if [ -z "$WARNING" ]; then
+  echo "This will delete the entire project on GitHub"
+  echo "but leave a local copy"
+  else
+    export WARNING="Yee Have Been Warned"
+fi
 if [ -z "$user" ]; then
   echo "Enter User Name:"
   read user
@@ -33,7 +36,7 @@ delete_repo() {
 origin_owner_repo_parse
 
 if [ -e .gitmodules ]; then
-   awk '/path =/ { print $3 }' .gitmodules |  xargs -P4 -I subsitution  bash -c "cd subsitution && git delete-repo"
+   awk '/path =/ { print $3 }' .gitmodules |  xargs -P4 -I subsitution  bash -c "cd subsitution && git delete-project"
 fi
 
 delete_repo
