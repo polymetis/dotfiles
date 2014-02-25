@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+#
+# Git submodules aren't stupid they are unaware of their master slave relationship.
+# This may be fine if everyone around is under the same understanding but this is not the case.
+# So why treat them as subs. Let's treat them like equals and see if we can have a bit more fun
+# with that relationship.
+
+if [ -n "$DOTFILES_DEBUG" ]; then
+  set -x
+fi
+
+jump() {
+  if [ "$(cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree 2> /dev/null)" != "true" ]; then
+    project_home="$(git rev-parse --show-toplevel)"
+    cd "$project_home"
+    "$@"
+  else
+    while [ "$(cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree 2> /dev/null)" = "true" ]; do
+      parent_module="$(git rev-parse --show-toplevel)/.."
+      cd "$parent_module"
+        if [ "$(cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree 2> /dev/null)" != "true" ]; then
+          project_home=$(git rev-parse --show-toplevel)
+          cd "$project_home"
+          "$@"
+        fi
+    done
+  fi
+}
+
+
+command="$1";
+
+command_path="git-modules-${commmand}"
+
+if [[ -x "${command_path}" ]]; then
+  exec "git-modules-$command $@"
+else
+  jump
+  git-modules-messaging "$@"
+fi
+
