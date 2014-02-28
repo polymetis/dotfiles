@@ -30,12 +30,21 @@ jump() {
 
 command="$1";
 
-command_path="git-modules-${commmand}"
+command_path="$(command -v "git-modules-${command}" || true)"
 
-if [[ -x "${command_path}" ]]; then
-  exec "git-modules-$command $@"
+if [ -n "${command_path}" ]; then
+  if [ "$command" == "remove" ]; then
+    set -e
+    cd $2
+    set +e
+    module_to_remove="$(pwd)"
+    jump
+    supermodule="$(pwd)"
+    module="$(echo "$module_to_remove" | sed 's.'$supermodule'/..g')"
+    exec git-modules-remove "$module"
+  fi
+  exec git-modules-$command "$@"
 else
   jump
   git-modules-messaging "$@"
 fi
-
