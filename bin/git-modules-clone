@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+#
+# Recursive git clone
+
+if [ -n "$DOTFILES_DEBUG" ]; then
+  set -x
+fi
+
+url_parser() {
+  local protocol
+
+  local owner="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/\/[^\/]*$//')"
+  local repositoryname="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/'$owner'\///g' | sed 's/.git//g')"
+  if [ "$owner" == "$repositoryname" ]; then
+    owner="$(git config --global user.github)"
+  fi
+
+  protocol="$(git config --global hub.protocol)"
+
+  if [ "$protocol" == "https" ]; then
+    url="https://github.com/"$owner"/"$repositoryname".git"
+  else
+    url="git@github.com:"$owner"/"$repositoryname".git"
+  fi
+}
+
+git_modules_state() {
+  if [ "$protocol" == "https" ]; then
+    sed -i '' 's,git@github.com:,https://github.com/,g' .gitmodules
+  else
+    sed -i '' 's,https://github.com/,git@github.com:,g' .gitmodules
+  fi
+}
+
+git_modules_file_reset(){
+  git checkout .gitmodules
+}
+
+clone_submodules(){
+  awk '/path =/ { print $3 }' .gitmodules | xargs -P4 -n1 git submodule update --init
+}
+
+if [ -n "$@" ]; then
+  if [ -n "$2" ]; then
+    url_parser $1
+    git clone $url $2
+    cd $2
+  fi
+  url_parser $1
+  git clone $url
+  cd $repositoryname
+fi
+
+git_modules_state
+git-modules-messaging "modules-clone"
+git_modules_file_reset
