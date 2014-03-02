@@ -6,17 +6,14 @@ if [ -n "$DOTFILES_DEBUG" ]; then
   set -x
 fi
 
-url_parser() {
-  local protocol
+protocol="$(git config --global hub.protocol)"
 
+url_parser() {
   local owner="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/\/[^\/]*$//')"
   repositoryname="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/'$owner'\///g' | sed 's/.git//g')"
   if [ "$owner" == "$repositoryname" ]; then
     owner="$(git config --global user.github)"
   fi
-
-  protocol="$(git config --global hub.protocol)"
-
   if [ "$protocol" == "https" ]; then
     url="https://github.com/"$owner"/"$repositoryname".git"
   else
