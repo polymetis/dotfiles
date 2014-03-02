@@ -52,5 +52,6 @@ if [ -n "$@" ]; then
 fi
 
 git_modules_state
+clone_submodules
 git-modules-messaging "modules-clone"
 git_modules_file_reset
