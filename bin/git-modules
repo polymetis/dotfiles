@@ -43,7 +43,9 @@ if [ -n "${command_path}" ]; then
     module="$(echo "$module_to_remove" | sed 's.'$supermodule'/..g')"
     exec git-modules-remove "$module"
   fi
+  shift
   exec git-modules-$command "$@"
+
 else
   jump
   git-modules-messaging "$@"

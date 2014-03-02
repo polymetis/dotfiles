@@ -10,7 +10,7 @@ url_parser() {
   local protocol
 
   local owner="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/\/[^\/]*$//')"
-  local repositoryname="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/'$owner'\///g' | sed 's/.git//g')"
+  repositoryname="$(echo "$1" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/'$owner'\///g' | sed 's/.git//g')"
   if [ "$owner" == "$repositoryname" ]; then
     owner="$(git config --global user.github)"
   fi
