@@ -22,6 +22,9 @@ url_parser() {
 }
 
 git_modules_state() {
+  if [ ! -f .gitmodules ]; then
+    exit 0
+  fi
   if [ "$protocol" == "https" ]; then
     sed -i '' 's,git@github.com:,https://github.com/,g' .gitmodules
   else
