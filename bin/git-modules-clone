@@ -37,16 +37,18 @@ clone_submodules(){
   awk '/path =/ { print $3 }' .gitmodules | xargs -P4 -n1 git submodule update --init
 }
 
-if [ -n "$@" ]; then
+if [ -n "$1" ]; then
   if [ -n "$2" ]; then
     url_parser $1
     git clone $url $2
     cd $2
+  else
+    url_parser $1
+    git clone "$url"
+    cd $repositoryname
   fi
-  url_parser $1
-  git clone $url
-  cd $repositoryname
 fi
+
 
 git_modules_state
 clone_submodules
