@@ -10,7 +10,7 @@ fi
 git_messaging() {
   command="$@"
   if [ -e .gitmodules ]; then
-    awk '/path =/ { print $3 }' .gitmodules | xargs -I mailbox -P4 -n1 bash -c "cd mailbox && echo "********Sending Message to mailbox*******" && git $command && git-modules-messaging $command"
+    awk '/path =/ { print $3 }' .gitmodules | xargs -I mailbox -P4 -n1 bash -c "cd mailbox && echo '********Sending Message to mailbox*******' && git $command && git-modules-messaging $command"
   fi
 }
 
