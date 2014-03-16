@@ -1,7 +1,7 @@
 #!/bin/bash
 CURRENT_STATUS="$(tmux show-options | grep status-left-fg | grep -Eio '(red|green|yellow)')"
 STATUS_URL="https://status.github.com/api"
-GITHUB_STATUS=$(curl $STATUS_URL/status.json | jq -r '.status')
+GITHUB_STATUS=$(curl $STATUS_URL/status.json | json -a status)
 
 echo $GITHUB_STATUS
 
@@ -24,7 +24,7 @@ tmux set-option status-left "$INDICATOR"
 tmux set-option status-left-fg $NEW_STATUS
 
 if [ "$NEW_STATUS" != "$CURRENT_STATUS" ]; then
-  MESSAGE="$(curl $STATUS_URL/last-message.json | jq -r '.body')"
+  MESSAGE="$(curl $STATUS_URL/last-message.json | json -a body)"
   tmux set-option message-bg $NEW_STATUS
   tmux display-message " $MESSAGE"
   # make sure message exits first
