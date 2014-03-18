@@ -9,6 +9,8 @@ if [ -n "$DOTFILES_DEBUG" ]; then
   set -x
 fi
 
+export LAUNCH_DIRECTORY="$(pwd)"
+
 jump() {
   if [ "$(cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree 2> /dev/null)" != "true" ]; then
     project_home="$(git rev-parse --show-toplevel)"
