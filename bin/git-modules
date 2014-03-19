@@ -9,7 +9,7 @@ if [ -n "$DOTFILES_DEBUG" ]; then
   set -x
 fi
 
-export LAUNCH_DIRECTORY="$(pwd)"
+export CURRENT_WORKING_DIRECTORY="$(pwd)"
 
 jump() {
   if [ "$(cd "$(git rev-parse --show-toplevel)/.." && git rev-parse --is-inside-work-tree 2> /dev/null)" != "true" ]; then
@@ -44,10 +44,14 @@ if [ -n "${command_path}" ]; then
     supermodule="$(pwd)"
     module="$(echo "$module_to_remove" | sed 's.'$supermodule'/..g')"
     exec git-modules-remove "$module"
+  elif [ "$command" == "clone" ]; then
+    shift
+    exec git-modules-$command "$@"
+  else
+    jump
+    export CODE_BASE_HOME="$(pwd)"
+    exec git-modules-$command "$@"
   fi
-  shift
-  exec git-modules-$command "$@"
-
 else
   jump
   git-modules-messaging "$@"

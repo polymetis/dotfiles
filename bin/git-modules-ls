@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+#
+# Lists the paths of submodules
+
+if [ -n "$DOTFILES_DEBUG" ]; then
+  set -x
+fi
+
+flag_parse() {
+  while [ -n "$1" ]
+    do
+      case "$1" in
+        "-p" | "--personal" )
+        owner="$GITHUB_USER"
+        shift
+        ;;
+        "-o" | "--orginizational" )
+        owner="$GITHUB_ORG"
+        shift
+        ;;
+        "--owner" )
+        shift
+        owner="$1"
+        shift
+        ;;
+        "--branch" )
+        shift
+        branch="$1"
+        shift
+        ;;
+        "-O" | "--opensource" )
+        opensource="open"
+        shift
+        ;;
+        "-n" | "--name" )
+        shift
+        reponame="$1"
+        shift
+        ;;
+        "--superreponame" )
+        shift
+        superreponame="$1"
+        shift
+        ;;
+      esac
+  done
+}
+
+awk '/path =/ {print $3}' .gitmodules | sed 's.^.'$CODE_BASE_HOME'.' | xargs -I repository bash -c "absolute-to-relative-directory $CURRENT_WORKING_DIRECTORY repository"
+
+git-modules-messaging 'modules-ls'
