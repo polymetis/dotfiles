@@ -9,36 +9,8 @@
 set nocompatible            " I am living in the future after all
 filetype off                " required!
 
-"Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-
-" Git Related
-" -----------
-
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
-
-" Languages
-" ---------
-
-Bundle 'rodjek/vim-puppet'
-
-Bundle 'elixir-lang/vim-elixir'
-Bundle 'jimenezrick/vimerl'
-Bundle 'gh:vim-ruby/vim-ruby'
-
-Bundle 'tpope/vim-liquid'
-Bundle 'tpope/vim-markdown'
-Bundle 'nelstrom/vim-markdown-folding'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'pangloss/vim-javascript'
-
-Bundle 'tpope/vim-commentary'
-Bundle 'godlygeek/tabular'
-Bundle 'epmatsw/ag.vim'
-Bundle 'ervandew/supertab'
+"Pathogen
+execute pathogen#infect()
 
 " Syntax
 " ------
@@ -141,7 +113,6 @@ set sidescroll=1
 " Status Line
 " -----------
 
-Bundle 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 
 
