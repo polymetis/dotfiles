@@ -1,3 +1,3 @@
 #Inital Setting
 
-IEx.Options.set :colors, eval_result: :"magenta, bright"
+IEx.configure colors: [eval_result: "magenta, bright"]
