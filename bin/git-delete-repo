@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+ 
+if [ -z "$user" ]; then
+  echo "Enter User Name"
+  read user
+  export user="$user"
+fi
+ 
+if [ -z "$pass" ]; then
+  echo "Enter Password"
+  read pass
+  export pass="$pass"
+fi
+ 
+origin_owner_repo_parse() {
+  originurl="$(git config remote.origin.url)"
+  owner="$(echo "$originurl" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/\/[^\/]*$//')"
+  repo="$(echo "$originurl" | sed 's/git@github.com://g' | sed 's/https:\/\/github.com\///g' | sed 's/'$owner'\///g' | sed 's/.git//g')"
+  if [ "$owner" == "MetraTech" ]; then
+    echo "stop that"
+    exit 1
+  fi
+}
+ 
+delete_repo() {
+curl -s -u "$user:$pass" -X DELETE https://api.github.com/repos/$owner/$repo
+}
+ 
+origin_owner_repo_parse
+ 
+if [ -e .gitmodules ]; then 
+   awk '/path =/ { print $3 }' .gitmodules | xargs -I metrasub -P4 -n1 bash -c "cd metrasub && git delete-repo"
+fi
+ 
+delete_repo
