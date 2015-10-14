@@ -20,17 +20,20 @@
      auto-completion
      better-defaults
      emacs-lisp
-     (git :variables
-          git-gutter-use-fringe t)
+     company-mode
      markdown
+     erlang
+     elixir
+     git
+     dash
+     html
      org
+     colors
+     editorconfig
+     themes-megapack
      shell
      syntax-checking
      )
-   dotspacemacs-configuration-layers
-   '(
-     erlang-elixir
-     puppet)
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
@@ -68,9 +71,10 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(manoj-dark 
-                         solarized-light
+   dotspacemacs-themes '(
                          solarized-dark
+                         solarized-light
+                         manoj-dark
                          leuven
                          monokai
                          zenburn)
@@ -148,6 +152,9 @@ before layers configuration."
    ;; specified with an installed package.
    ;; Not used for now.
    dotspacemacs-default-package-repository nil
+   ;;
+   ;; MaGit
+   git-magit-status-fullscreen t
    )
   ;; User initialization goes here
   )
@@ -156,6 +163,8 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (add-hook 'alchemist-mode-hook 'company-mode)
+  (setq magit-repo-dirs '("~/Code/"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
