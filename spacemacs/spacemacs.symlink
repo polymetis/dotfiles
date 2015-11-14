@@ -159,6 +159,7 @@ before layers configuration."
    git-magit-status-fullscreen t
    )
   ;; User initialization goes here
+   (setq css-indent-offset 2)
   )
 
 (defun dotspacemacs/config ()
