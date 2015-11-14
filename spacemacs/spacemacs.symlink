@@ -26,12 +26,14 @@
      elixir
      git
      dash
+     osx
      html
      org
      colors
      editorconfig
      themes-megapack
      shell
+     perspectives
      syntax-checking
      )
    ;; List of additional packages that will be installed wihout being
@@ -82,7 +84,7 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Fira Code"
                                :size 13
                                :weight normal
                                :width normal
