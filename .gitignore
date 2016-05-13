@@ -1,3 +1,4 @@
 git/gitconfig.symlink
 .netrwhist
 bin/opam
+bin/patdiff
