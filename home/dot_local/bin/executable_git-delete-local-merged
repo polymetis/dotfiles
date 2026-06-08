@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# Delete local branches already merged into HEAD, protecting the main
+# integration branches and whatever branch you're currently on.
+# Originally from holman/dotfiles (via @tekkub); widened to guard main/develop
+# and the current branch, not just "master".
+
+current=$(git rev-parse --abbrev-ref HEAD)
+
+branches=$(git branch --merged \
+  | grep -vE "^[*+]|^[[:space:]]*(main|master|develop|${current})$" \
+  | tr -d ' ')
+
+if [ -z "$branches" ]; then
+  echo "No merged branches to delete."
+  exit 0
+fi
+
+echo "$branches" | xargs -n1 git branch -d
