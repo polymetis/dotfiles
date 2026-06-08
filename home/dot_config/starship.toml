@@ -1,0 +1,62 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+palette = 'tokyonight'
+
+format = """
+$directory\
+$git_branch$git_status$git_state\
+$elixir$nodejs$python$rust\
+$docker_context\
+$cmd_duration\
+$line_break$character"""
+
+[palettes.tokyonight]
+blue    = '#7aa2f7'
+cyan    = '#7dcfff'
+green   = '#9ece6a'
+magenta = '#bb9af7'
+red     = '#f7768e'
+yellow  = '#e0af68'
+orange  = '#ff9e64'
+gray    = '#565f89'
+
+# Italic directory — the Operator Mono cursive flourish, right in the prompt.
+[directory]
+style = 'italic blue'
+truncation_length = 3
+truncate_to_repo = true
+
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❮](bold yellow)'
+
+[git_branch]
+style = 'magenta'
+
+[git_status]
+style = 'red'
+
+[git_state]
+style = 'yellow'
+
+[cmd_duration]
+min_time = 2000
+style = 'italic gray'
+
+[elixir]
+style = 'magenta'   # symbol + version + (OTP nn) via starship defaults
+
+[nodejs]
+style = 'green'
+
+[python]
+style = 'yellow'
+
+[rust]
+style = 'orange'
+
+[docker_context]
+style = 'cyan'
+only_with_files = true
