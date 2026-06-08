@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+#
+# Install Homebrew (if missing) and the package stack from the Brewfile.
+# Named run_onchange_* so it re-runs whenever the Brewfile changes — the
+# fingerprint below forces chezmoi to notice content changes.
+#
+# Brewfile fingerprint: {{ output "shasum" "-a" "256" (printf "%s/.dotfiles/Brewfile" .chezmoi.homeDir) | trim }}
+
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+  echo "==> Homebrew not found; installing…"
+  NONINTERACTIVE=1 /bin/bash -c \
+    "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  for candidate in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+    if [ -x "$candidate" ]; then eval "$("$candidate" shellenv)"; fi
+  done
+fi
+
+echo "==> brew bundle"
+brew bundle --file="{{ .chezmoi.homeDir }}/.dotfiles/Brewfile"

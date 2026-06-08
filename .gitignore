@@ -1,3 +1,6 @@
+# brew bundle lockfile (older brew versions)
+Brewfile.lock.json
+
 # OS / editor cruft
 .DS_Store
 *.swp
