@@ -1,0 +1,76 @@
+# Managed by chezmoi (home/dot_gitconfig.tmpl). Name/email come from the
+# `chezmoi init` prompts, so this file stays machine-agnostic and secret-free.
+#
+# Git shortcuts intentionally live as bin/git-* scripts in ~/.local/bin, not as
+# [alias] entries — easier to read, test, and run from anywhere.
+
+[user]
+	name = {{ .name }}
+	email = {{ .email }}
+
+[init]
+	defaultBranch = main
+
+[core]
+	editor = nvim
+	excludesfile = ~/.gitignore_global
+	attributesfile = ~/.gitattributes_global
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true       # n / N to move between diff sections
+	line-numbers = true
+	true-color = always
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+	mnemonicPrefix = true
+	renames = true
+
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+
+[pull]
+	rebase = false
+
+[fetch]
+	prune = true
+	pruneTags = true
+
+[rebase]
+	autosquash = true
+	autostash = true
+	updateRefs = true
+
+[rerere]
+	enabled = true        # remember conflict resolutions and replay them
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[commit]
+	verbose = true        # show the diff in the commit message editor
+
+[color]
+	ui = auto
+
+[help]
+	autocorrect = prompt
+
+[credential]
+	helper = osxkeychain
+
+[hub]
+	protocol = ssh

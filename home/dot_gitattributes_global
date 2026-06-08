@@ -1,0 +1,5 @@
+# Global gitattributes (core.attributesfile). Better diff hunk headers per
+# language — the "@@ … @@" line shows the enclosing def/module/function.
+*.ex   diff=elixir
+*.exs  diff=elixir
+*.heex diff=html
