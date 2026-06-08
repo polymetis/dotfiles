@@ -1,0 +1,11 @@
+# Machine-local overrides & secrets. Copy to `local.zsh` (same dir) and edit.
+# This file is sourced LAST by ~/.zshrc and is NEVER tracked by chezmoi/git.
+#
+# Put things here that are specific to one machine or must not be committed:
+#
+#   export VAULT_ADDR="https://vault.example.net:8200/"
+#   export AWS_PROFILE="work"
+#   export SOME_API_TOKEN="…"
+#
+# Non-secret work-vs-personal differences can instead use chezmoi templates
+# keyed off the `work` bool from `chezmoi init`; anything sensitive belongs here.

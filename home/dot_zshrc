@@ -1,0 +1,20 @@
+# ~/.zshrc — thin loader. The real config lives in ~/.config/zsh/*.zsh,
+# managed by chezmoi. Edit a module with `chezmoi edit ~/.config/zsh/<m>.zsh`
+# (or `chezmoi cd` → home/dot_config/zsh/).
+
+ZSH_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/zsh"
+
+# Ordered load. Each module guards its own tools, so a missing binary
+# degrades gracefully instead of erroring. `bindkey -e` (keybindings) runs
+# before plugins so fzf binds into the emacs keymap; syntax-highlighting,
+# sourced inside plugins, stays last of all.
+for _module in path env options completion aliases keybindings plugins; do
+  _file="$ZSH_CONFIG_DIR/$_module.zsh"
+  [[ -r "$_file" ]] && source "$_file"
+done
+
+# Machine-local overrides & secrets (VAULT_ADDR, work-only env, …).
+# Never tracked by chezmoi/git. See local.zsh.example.
+[[ -r "$ZSH_CONFIG_DIR/local.zsh" ]] && source "$ZSH_CONFIG_DIR/local.zsh"
+
+unset _module _file
