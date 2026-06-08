@@ -1,4 +1,15 @@
-git/gitconfig.symlink
-.netrwhist
-bin/opam
-bin/patdiff
+# OS / editor cruft
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Machine-local secrets must never be committed. The real files live outside
+# the source tree (e.g. ~/.config/zsh/local.zsh) and are never `chezmoi add`-ed,
+# but these patterns are a backstop in case one ever sneaks in.
+local.zsh
+*.token
+.env
+id_rsa*
+id_ed25519*
+*.pem

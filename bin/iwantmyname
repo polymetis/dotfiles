@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -x
-
-hostname="$(hostname | sed 's/local/link/g')"
-curl -u "$iwantmynameuser":"$iwantmynamepassword" \
-  "https://iwantmyname.com/basicauth/ddns?hostname=$hostname"

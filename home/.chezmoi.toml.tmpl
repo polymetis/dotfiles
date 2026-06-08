@@ -1,0 +1,12 @@
+{{- /* Rendered once into ~/.config/chezmoi/chezmoi.toml by `chezmoi init`. */ -}}
+{{- /* The "Once" prompts are remembered, so re-running init won't re-ask.   */ -}}
+{{- $name  := promptStringOnce . "name"  "Full name (git author)" -}}
+{{- $email := promptStringOnce . "email" "Git email for THIS machine" -}}
+{{- $work  := promptBoolOnce   . "work"  "Is this a work machine" -}}
+
+sourceDir = {{ (printf "%s/.dotfiles" .chezmoi.homeDir) | quote }}
+
+[data]
+    name  = {{ $name | quote }}
+    email = {{ $email | quote }}
+    work  = {{ $work }}
