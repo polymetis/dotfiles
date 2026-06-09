@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# World clock — current time in the timezones I care about.
+# Idea: @norbu09
 
 UTC=`env TZ=UTC date`
 WE=`env TZ=Pacific/Auckland date`

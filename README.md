@@ -5,7 +5,8 @@ Ghostty · tmux · Neovim (LazyVim). Secret-free and public-safe by design, so t
 same repo can be pulled onto both personal and work machines.
 
 Rebuilt in 2026 from a [holman/dotfiles](https://github.com/holman/dotfiles) fork that
-dates back to 2010 — keeping the good bones (the `bin/` git scripts) and dropping the rest.
+dates back to 2010 — now entirely my own code: holman's framework and every borrowed
+script are gone, leaving only the `bin/` tools I wrote myself.
 
 ## Layout
 
