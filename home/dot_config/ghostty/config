@@ -35,4 +35,6 @@ cursor-style-blink = false
 # ssh-terminfo installs Ghostty's terminfo on connect (when the remote has
 # tic); ssh-env falls TERM back to xterm-256color otherwise. The rest of the
 # list is Ghostty's default set (cursor/title/path on, sudo off).
+# Note: `sudo su` on a remote still needs terminfo for root — see
+# docs/notes/ghostty-ssh-terminfo.md
 shell-integration-features = cursor,no-sudo,title,ssh-env,ssh-terminfo,path
