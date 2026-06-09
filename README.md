@@ -4,8 +4,8 @@ Personal dotfiles, managed with [chezmoi](https://chezmoi.io). zsh · starship �
 Ghostty · tmux · Neovim (LazyVim). Secret-free and public-safe by design, so the
 same repo can be pulled onto both personal and work machines.
 
-Rebuilt in 2026 from a long-stale [holman/dotfiles](https://github.com/holman/dotfiles)
-fork — keeping the good bones (the `bin/` git scripts) and dropping the rest.
+Rebuilt in 2026 from a [holman/dotfiles](https://github.com/holman/dotfiles) fork that
+dates back to 2010 — keeping the good bones (the `bin/` git scripts) and dropping the rest.
 
 ## Layout
 
