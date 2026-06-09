@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+#
+# treats modules as mailboxes for commands.
+
+if [ -n "$DOTFILES_DEBUG" ]; then
+  set -x
+fi
+
+
+cmd_submodule() {
+  local awk_escapes
+  awk_escapes="$(echo "$1" | sed 's.\/.\\\/.g')"
+
+  #removes syncable records of git modules
+    awk '/^\[/{p=1}/^\[submodule \"'"$awk_escapes"'"\]/,/^\[/{p=0}p' .gitmodules > .gitmodules.temp
+    mv .gitmodules.temp .gitmodules
+  #removes local config
+    awk '/^\[/{p=1}/^\[submodule \"'"$awk_escapes"'"\]/,/^\[/{p=0}p' .git/config > .git/config.temp
+    mv .git/config.temp .git/config
+
+    git rm --cached "$1"
+
+  #commits submodules removal
+    git add .gitmodules
+    git rm "$1"
+    git commit -u -m "Removes $1"
+
+    rm -rf "$1"
+}
+
+cmd_submodule "$1"

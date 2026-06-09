@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#
+# Lists the paths of submodules
+
+if [ -n "$DOTFILES_DEBUG" ]; then
+  set -x
+fi
+
+if [ -e .gitmodules ]; then
+  awk '/path =/ {print $3}' .gitmodules | sed 's.^.'$CODE_BASE_HOME'.' | xargs -I repository bash -c "absolute-to-relative-directory $CURRENT_WORKING_DIRECTORY repository"
+fi
+
+git-modules-messaging 'modules-ls'

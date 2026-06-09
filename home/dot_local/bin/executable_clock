@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+UTC=`env TZ=UTC date`
+WE=`env TZ=Pacific/Auckland date`
+MU=`env TZ=Europe/Vienna date`
+TO=`env TZ=Canada/Eastern date`
+PH=`env TZ=US/Arizona date`
+VC=`env TZ=Canada/Pacific date`
+
+echo ""
+echo "         -tick- "
+echo "           UTC $UTC"
+echo "    Wellington $WE"
+echo " Munich/Vienna $MU"
+echo "       Toronto $TO"
+echo "       Phoenix $PH"
+echo "     Vancouver $VC"
+echo "         -tock- "
