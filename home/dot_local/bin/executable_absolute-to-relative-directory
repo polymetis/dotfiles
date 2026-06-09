@@ -24,7 +24,7 @@ while [ $fake_error_count -gt 0 ]; do
   targetdirectory=../$targetdirectory
   let fake_error_count=fake_error_count-1
 done
-if [ -n "$targetdirectory"]; then
+if [ -n "$targetdirectory" ]; then
   echo "$targetdirectory"
 else
   echo "We always end up where we started"
