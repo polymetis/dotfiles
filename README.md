@@ -35,6 +35,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply \
 The `run_once_` scripts then install Homebrew (if missing) and the package
 stack, bootstrap tmux's plugin manager, and sync LazyVim's plugins.
 
+A few system-level steps can't be automated (login shell, GUI-app PATH, fonts) —
+see [docs/notes/macos-setup.md](docs/notes/macos-setup.md).
+
 ## Fonts
 
 The terminal/editor font is **Operator Mono SSm**, which is proprietary and is
