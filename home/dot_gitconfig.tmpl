@@ -26,7 +26,9 @@
 	true-color = always
 
 [merge]
-	conflictstyle = zdiff3
+	# diff3, NOT zdiff3: zdiff3 needs git >= 2.35, but macOS GUI/launchd apps fall
+	# back to Apple's git 2.30, which hard-errors on an unknown conflict style.
+	conflictstyle = diff3
 
 [diff]
 	algorithm = histogram
@@ -66,8 +68,8 @@
 [color]
 	ui = auto
 
-[help]
-	autocorrect = prompt
+# (no help.autocorrect: the "prompt" value needs git >= 2.34 and Apple's 2.30
+# errors on it. Git's default already shows a "did you mean…" suggestion.)
 
 [credential]
 	helper = osxkeychain
