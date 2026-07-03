@@ -9,3 +9,6 @@
 #
 # Non-secret work-vs-personal differences can instead use chezmoi templates
 # keyed off the `work` bool from `chezmoi init`; anything sensitive belongs here.
+#
+# For a secret only ONE project needs, prefer a per-project gitignored .env
+# loaded by mise (see docs/notes/env-vars.md) over setting it globally here.
