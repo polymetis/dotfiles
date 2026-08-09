@@ -25,12 +25,25 @@
 	line-numbers = true
 	true-color = always
 
+[difftool]
+	prompt = false        # don't ask "Launch 'delta'?" once per file
+
+[difftool "delta"]
+	# `env -u GIT_EXTERNAL_DIFF` is load-bearing, NOT boilerplate. difftool exports
+	# GIT_EXTERNAL_DIFF=git-difftool--helper to the tool it launches; delta's
+	# two-path mode shells out to `git diff --no-index`, that inner git obeys the
+	# inherited variable and re-invokes the helper -> delta -> git -> ... until the
+	# machine runs out of processes. Unsetting it for the child breaks the cycle.
+	# (delta accepts two directories as well as two files, so `-d` works too.)
+	cmd = env -u GIT_EXTERNAL_DIFF delta "$LOCAL" "$REMOTE"
+
 [merge]
 	# diff3, NOT zdiff3: zdiff3 needs git >= 2.35, but macOS GUI/launchd apps fall
 	# back to Apple's git 2.30, which hard-errors on an unknown conflict style.
 	conflictstyle = diff3
 
 [diff]
+	tool = delta          # otherwise `git difftool` launches FileMerge.app on macOS
 	algorithm = histogram
 	colorMoved = default
 	mnemonicPrefix = true
